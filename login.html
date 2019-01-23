@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>App Reserva</title>
+<style>
+body{
+font-family: "Lato", sans-serif;
+background: #004f90;
+}
+h3{
+margin: 2px 5px 2px 5px;
+}
+.dvCentro{
+margin-top: 80px;
+width: 90%;
+border-radius: 5px;
+box-shadow: 2px 2px 1px #ccc;
+background-color: #f0f0f0;
+}
+
+label {
+  padding: 2px 2px 2px 0;
+  display: inline-block;
+}
+input[type=submit]{
+margin: 20px 0px;
+width: 96%;
+height: 50px;
+font-size: 18px;
+background: #c3ffcd;
+border-radius: 2px;
+border: 2px solid grey;
+}
+input[type=text],input[type=password]{
+width: 96%;
+height: 30px;
+border-radius: 5px;
+border: 2px solid grey;
+margin: 1px 2px;
+padding-left: 2px;
+}
+</style>
+</head>
+<body>
+<div id="div_telaLogin">
+<center>
+<div class="dvCentro">
+      <div ><br>
+        <h3>App reserva</h3>
+        <br><hr>
+        <div>
+          <form action="email.php?a=login" method="post">
+            <div >
+              <div >
+				<label for="inputEmail">Email</label>
+                <input type="text" name="enUsuario" id="enUsuario" class="form-control" placeholder="Email" required="required" autofocus="autofocus">
+                
+              </div>
+            </div><br>
+            <div >
+              <div >
+			  <label for="inputPassword">Senha </label>
+                <input type="password" name="enPass" id="enPass" class="form-control" placeholder="Senha" required="required">
+                
+              </div>
+            </div>
+            <br>
+            </div>
+            <input type="submit" value="Entrar" />
+          </form>
+        </div>
+      </div>
+      </center>
+</div>
+</body>
+<script type="text/javascript">
+	/*if (typeof(Storage) !== "undefined") {
+		if(localStorage.getItem("dadosSalvos") == "true"){
+			window.location = "index.html";
+		}else{
+			
+		}
+	}else{
+		alert("WebStorage não suportado");
+	}
+*/
+</script>
+</html>

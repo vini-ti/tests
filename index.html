@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>App Reserva</title>
+<style>
+body{
+font-family: "Lato", sans-serif;
+background: #004f90;
+}
+h3{
+margin: 2px 5px 2px 5px;
+}
+.dvCentro{
+margin-top: 80px;
+width: 90%;
+border-radius: 5px;
+box-shadow: 2px 2px 1px #ccc;
+background-color: #f0f0f0;
+}
+#div_topo{
+	display: none;
+	position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    color: #555;
+    z-index: 5;
+    background: #add;
+    box-shadow: 2px 2px rgba(200,200,200,0.4);
+}
+#container{
+    position: absolute ;
+    top: 50px;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    overflow-x: hidden ;
+    overflow-y: scroll ;
+    background: #eee;
+    text-align: left;
+}
+.item{
+	height: 40px;
+	margin: 2px 1px 0 1px;
+	padding: 3px;
+    text-align: left;
+	border: 1px solid grey;
+}
+.item > a > div{
+	height: 40px;
+    text-align: left;
+    padding: 5px 0px 15px 5px;
+    border-bottom: 1px solid #ddd;
+    transition: background 1s;
+    
+}
+
+.item > a > div:hover, .item > a > div:active{
+    background-color: rgba(20,25,25,.1);
+}
+
+.header{
+	float: left;
+    font-size: 20px;
+	margin: 0;
+}
+
+.subheader{
+	float: right;
+    color: #2f2f2f;
+    font-size: 12px;
+	margin: 0;
+}
+.imgCont{
+margin-right: 20px;
+float: right;
+width: 60px;
+height: 60px;
+border: 1px dashed grey;
+border-radius: 50px;
+}
+.msgCon{
+float: left;
+background: #faa;
+color: #111;
+border-radius: 30px;
+padding: 5px 10px;
+margin: 10px 20px 0 5px;
+}
+#btMenu{
+display: block;
+position: fixed;
+bottom: 10px;
+right: 10px;
+width: 60px;
+height: 60px;
+margin: 0;
+padding: 0;
+font-size: 50px;
+text-align: center;
+z-index: 5;
+border: 1px solid grey;
+border-radius: 50px;
+background: #afa;
+}
+label {
+  padding: 2px 2px 2px 0;
+  display: inline-block;
+}
+input[type=button]{
+margin: 5px 0px;
+width: 96%;
+height: 50px;
+font-size: 18px;
+background: #c3ffcd;
+border-radius: 2px;
+border: 2px solid grey;
+}
+#btReservar{
+position:fixed;
+left: 1px;
+bottom: 1px;
+margin: 0;
+width: 50%;
+height: 50px;
+font-size: 18px;
+background: #c3ffcd;
+border-radius: 2px;
+border: 1px solid grey;
+background: #afa;
+}
+#btCancelar{
+position: fixed;
+right: 1px;
+bottom: 1px;
+margin: 0;
+width: 50%;
+height: 50px;
+font-size: 18px;
+background: #c3ffcd;
+border-radius: 2px;
+border: 1px solid grey;
+background: #f99;
+}
+input[type=text],input[type=password]{
+width: 96%;
+height: 30px;
+border-radius: 5px;
+border: 2px solid grey;
+margin: 1px 2px;
+padding-left: 2px;
+}
+</style>
+<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+<div id="div_topo">
+<h3 id="txTitulo">App Reserva</h3>
+<div onclick="telaNovaRequisicao()" id="btMenu">+</div>
+</div>
+<div id="div_conteudo">
+<div id="div_telaLogin">
+<center>
+<div class="dvCentro">
+      <div ><br>
+        <h3>App reserva</h3>
+        <br><hr>
+        <div>
+          <div>
+            <div >
+              <div >
+				<label for="inputEmail">Email</label>
+                <input type="text" name="enUsuario" id="enUsuario" class="form-control" placeholder="Email" required="required" autofocus="autofocus">
+                
+              </div>
+            </div><br>
+            <div >
+              <div >
+			  <label for="inputPassword">Senha </label>
+                <input type="password" name="enPass" id="enPass" class="form-control" placeholder="Senha" required="required">
+                
+              </div>
+            </div>
+            <br>
+			<span id="txt_info"></span>
+            </div>
+            <input type="button" value="Entrar" onclick="autenticacao()"/>
+          </div>
+        </div>
+      </div>
+      </center>
+</div>
+
+</div>
+</body>
+<script type="text/javascript">
+</script>
+<script src="/static/process.js"></script>
+</html>
+

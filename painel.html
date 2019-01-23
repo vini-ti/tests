@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+    font-family: "Lato", sans-serif;
+}
+#dvVisual{
+display: none;
+position: fixed;
+top: 40px;
+left: 20px;
+right: 20px;
+bottom: 10px;
+border: 1px solid grey;
+background: #eee;
+z-index: 2;
+}
+/* Fixed sidenav, full height */
+.sidenav {
+    height: 100%;
+    width: 100px;
+    position: fixed;
+    z-index: 1;
+    top: 43px;
+    left: 8px;
+    background-color: #d0d0d0;
+    overflow-x: hidden;
+    padding-top: 20px;
+    border: 1px solid grey;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+    padding: 2px 8px 6px 4px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #111111;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+    color: grey;
+}
+
+/* Main content */
+.main {
+    margin-left: 10px; /* Same as the width of the sidenav */
+    margin-top: 60px;
+    font-size: 20px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+    background-color: grey;
+    color: black;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+    display: none;
+    background-color: #f0f0f0;
+    padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+header{
+position: fixed;
+top: 2px;
+width: 98%;
+height: 30px;
+border: 1px solid grey;
+padding: 3px;
+margin: 0;
+background: #d0d0d0;
+}
+h3{
+margin: 5px 5px 5px 2px;
+}
+table, tr, td {width: -webkit-fill-available; height: 50px; border: 1px solid black;border-collapse: collapse;font-family: Calibri;}
+/*FORMULARIOS*/
+#dvNovoVeiculo{
+display: block;
+width: 100%;
+padding: 0;
+margin: 0;
+}
+input[type=text], select, textarea {
+  width: 50%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+
+</style>
+<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+<header>
+<h3>Painel de solicitações</h3>
+</header>
+
+<div class="main">
+<div id="dvTabela">
+</div>
+<div id="dvVisual">
+<h3 id="txSol">Reserva: </h3>
+<center><table style='width:500px'><tr><caption><b style='text-align:center; font-size: 20px; margin: 10px 50px;'>Reserva de veiculo</b></caption></tr><tr><td colspan='2' id="txCc"><b>Centro de Custo: </b></td></tr><tr><td id="txDat">Data: </td><td id="txDes">Destino: </td></tr><tr><td colspan='2' id="txJus">Motivo: </td></tr><tr><td id="txHs">Horário de saída: </td><td id="txHc">Horário de chegada: </td></tr><tr><td colspan='2' id="txCon">Condutor: </td></tr><tr><td colspan='2' id="txNa">Quantidade de acompanhantes: </td></tr></table>
+
+<br><hr>
+<br><br><input type="button" value="Voltar" onclick="dvVisual.style.display='none';"/></div>
+</center>
+</div>
+</div>
+
+<script>
+
+</script>
+<script src="/static/processPainel.js"></script>
+</body>
+</html> 
