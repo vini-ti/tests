@@ -1,5 +1,8 @@
-const http = require('http');
 var express = require('express');
+var http = require('http');
+var path = require('path');
+var app = express();
+var server = http.Server(app);
 
 const port=process.env.PORT || 3000;
 
