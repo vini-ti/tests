@@ -2,10 +2,13 @@
 "name": "test",
 "version": "1.0.0",
 "description": "node app ",
-"main": "app.js",
+"main": "server.js",
 "scripts": {
-"start": "node app.js"
+"start": "node server.js"
 },
+  "dependencies": {
+ “express”: "4.13.4"
+ },
 "repository": {
 "type": "git",
 "url": ""
