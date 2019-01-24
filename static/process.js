@@ -111,12 +111,12 @@ function telaPrincipal(){
 	content.innerHTML = "<span id='container' ></span>";
 	document.getElementById("div_topo").style.display = "block";
 	
-	document.getElementById("btMenu").style.display = "block";
+	//document.getElementById("btMenu").style.display = "block";
 	document.getElementsByTagName("BODY")[0].style.background = "#9dbcd6";
 }
 function telaNovaRequisicao(){
 	document.getElementById("div_topo").style.display = "none";
-	document.getElementById("btMenu").style.display = "none";
+	//document.getElementById("btMenu").style.display = "none";
 	content.innerHTML = "<span id='div_req' ><div> <div ><br><input type='text' name='solicitante' id='enUsuario' hidden><input type='password' name='pass' id='enPass' hidden> <label>Centro de custo </label><br><input type='text' name='centroCusto' id='enCC'><br><br><label>Data </label><br><input type='date' name='data' id='enData'><br><br><label>Destino </label><br><input type='text' name='destino' id='enDest'><br><br><label>Justificativa </label><br><textarea name='justificativa' id='enJust'></textarea><hr><label>Horário de saída </label><br><input type='time' name='horSaida' id='enHs'><br><label>Horário de chegada </label><br><input type='time' name='horChegada' id='enHc'><hr><label>Condutor </label><input type='text' name='condutor' id='enCond'><br><br><label>Número de acompanhantes </label><input type='number' value='0' min='0' max='4' name='numAcom' id='enNa'><hr></div><div class='btInferior'><input type='button' id='btReservar' value='Reservar' onclick='solicitar()'/><input type='button' id='btCancelar' value='Cancelar' onclick='telaPrincipal()'/></div></div><br><br><br><br></span>";
 }
 
