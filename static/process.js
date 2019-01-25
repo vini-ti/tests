@@ -7,7 +7,7 @@ var content = document.getElementById("div_conteudo");
 window.onload = function(){
 	if(localStorage.getItem("email") != null && localStorage.getItem("pass") != null){
 		myemail = localStorage.getItem("email");
-		console.log(myemail);
+		//console.log(myemail);
 		telaPrincipal();
 		socket.emit("load",myemail);
 	}else{
@@ -60,7 +60,8 @@ console.log(data);
 	navigator.vibrate(500);
 	}
 	alert("Veiculo confirmado\nVeiculo: "+data.reserva.veiculo+"\nPlaca: "+data.reserva.placa);
-	//historico(data);
+	historico(data);
+	document.getElementById("btNova").style.display = "block";
 });
 socket.on('loadsolits', function(data) {
 console.log(data);
@@ -91,16 +92,28 @@ function solicitar(){
 	var hc = document.getElementById("enHc").value;
 	var cd = document.getElementById("enCond").value;
 	var na = document.getElementById("enNa").value;
+	
+	
+	if(cc!=""&&cd!=""){
 	var dados = {em:usu,ps:pas,cc:cc,data:dt,destino:dn,just:jt,hs:hs,hc:hc,cond:cd,na:na};
 	telaCarregando();
-	
+	document.getElementById("btNova").style.display = "none";
 	socket.emit('solicite',dados);
+	}else{
+	alert("Preencha todos os campos!");
+	}
+	
 }
 
 
 function telaCarregando(){
 	document.getElementById("div_topo").style.display = "none";
 	content.innerHTML = "<center><progress></progress></center>";
+	
+}
+function telasolicitacoes(){
+	document.getElementById("div-solicitacoes").style.display = "block";
+	content.innerHTML = "<button onclick='telaPrincipal()'>Voltar</button>";
 	
 }
 function telaLogin(){
@@ -122,9 +135,9 @@ function telaNovaRequisicao(){
 
 function historico(dado){
 	if(dado.confirmado){
-		document.getElementById("container").innerHTML += "<div class='item' style='background:#8fbc8fbd' onclick='alert("+dado.veiculo+dado.placa+")'> <h4 class='header'>Veiculo reservado </h4><h5 class='subheader'>"+dado.data+"</h5></div>";
+		document.getElementById("div-solicitacoes").innerHTML = "<div class='item' style='background:#8fbc8fbd' onclick='alert("+dado.veiculo+dado.placa+")'> <h4 class='header'>Veiculo reservado </h4><h5 class='subheader'>"+dado.data+"</h5></div>";
 		
 	}else{
-		document.getElementById("container").innerHTML += "<div class='item' style='background:#faa'> <h4 class='header'>Veiculo solicitado</h4><h5 class='subheader'>"+dado.data+"</h5></div>";
+		document.getElementById("div-solicitacoes").innerHTML = "<div class='item' style='background:#faa'> <h4 class='header'>Veiculo solicitado</h4><h5 class='subheader'>"+dado.data+"</h5></div>";
 	}
 }
