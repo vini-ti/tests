@@ -39,9 +39,16 @@ background-color: #f0f0f0;
     background: dodgerblue;
     box-shadow: 2px 2px rgba(200,200,200,0.4);
 }
+#div_conteudo{
+	position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+}
 #container{
     position: absolute ;
-    top: 50px;
+    top: 45px;
     bottom: 0px;
     right: 0;
     left: 0;
@@ -129,8 +136,8 @@ border: 2px solid grey;
 }
 #btReservar{
 position:fixed;
-left: 1px;
-bottom: 1px;
+left: 0px;
+bottom: 0px;
 margin: 0;
 width: 50%;
 height: 50px;
@@ -142,8 +149,8 @@ background: #afa;
 }
 #btCancelar{
 position: fixed;
-right: 1px;
-bottom: 1px;
+right: 0px;
+bottom: 0px;
 margin: 0;
 width: 50%;
 height: 50px;
@@ -168,7 +175,7 @@ height: 60px;
 #div-btsMenu{
 padding-top: 20px;
 }
-input[type=text],input[type=password]{
+input[type=text],[type=tel],input[type=password]{
 width: 96%;
 height: 30px;
 border-radius: 5px;
@@ -190,9 +197,10 @@ width: 200px;
 <center>
 <img src="http://www.aegea.com.br/wp-content/uploads/2018/06/logo-aegea-160x70.png"/>
 <button class="btn" id="btNova" onclick="telaNovaRequisicao()" ><i class="fa fa-car"></i> Solicitar veículo</button>
+<button class="btn" id="btCheck" onclick="telaCheck()" style="display:none; background:#46c537;"> <i class="fa fa-check"></i> Checklist</button>
 <button class="btn" onclick="telaSolicitacoes()"> <i class="fa fa-bars"></i> Solicitações</button>
-<button class="btn"><i class="fa fa-user"></i> Perfil</button>
-<button class="btn"><i class="fa fa-close"></i> Sair</button>
+<button class="btn" onclick="telaPerfil()"><i class="fa fa-user"></i> Perfil</button>
+<!--<button class="btn"><i class="fa fa-close"></i> Sair</button>-->
 </center>
 </div><div id="div-solicitacoes">
 

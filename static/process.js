@@ -55,16 +55,17 @@ if(data == false){
 
 //RESPOSTA DO ADMIN
 socket.on('confirmed', function(data) {
-console.log(data);
+//console.log(data);
 	if (navigator.vibrate) {
 	navigator.vibrate(500);
 	}
 	alert("Veiculo confirmado\nVeiculo: "+data.reserva.veiculo+"\nPlaca: "+data.reserva.placa);
+	data.confirmado = true;
 	historico(data);
-	document.getElementById("btNova").style.display = "block";
+	document.getElementById("btCheck").style.display = "block";
 });
 socket.on('loadsolits', function(data) {
-console.log(data);
+//console.log(data);
 for(var s = 0;s < data.length;s++){
 historico(data[s]);
 }
@@ -111,33 +112,58 @@ function telaCarregando(){
 	content.innerHTML = "<center><progress></progress></center>";
 	
 }
-function telasolicitacoes(){
-	document.getElementById("div-solicitacoes").style.display = "block";
-	content.innerHTML = "<button onclick='telaPrincipal()'>Voltar</button>";
-	
+function telaSolicitacoes(){
+	document.getElementById("txTitulo").innerHTML = "Solicitações";
+	var tlS = document.getElementById("div-solicitacoes");
+	tlS.style.display = "block";
+	document.getElementById("div-btsMenu").style.display = "none";
+	//tlS.innerHTML = 
+	content.innerHTML = "<button onclick='telaPrincipal()' class='btn' style='position:fixed; bottom: 0px; width: 100%; margin: 0;'>Voltar</button>";
+}
+function telaCheck(){
+	document.getElementById("txTitulo").innerHTML = "Checklist";
+	document.getElementById("div-btsMenu").style.display = "none";
+	content.innerHTML = "<span id='container'><h3>Pneus: <input type='checkbox'/></h3><br><h3>Combustivel: <input type='checkbox'/></h3></span><br><br><button onclick='fimCheck()' class='btn' style='position:fixed; bottom: 0px; width: 100%; margin: 0;'>Finalizar</button>";
 }
 function telaLogin(){
 	document.getElementById("div_topo").style.display = "none";
 	content.innerHTML = "<div id='div_telaLogin'><center><div class='dvCentro'>      <div ><br>       <h3>App reserva</h3>      <br><hr>      <div><div>           <div > <div ><label for='inputEmail'>Email</label><input type='text' name='enUsuario' id='enUsuario' class='form-control' placeholder='Email' required='required' autofocus='autofocus'></div></div><br><div ><div ><label for='inputPassword'>Senha </label><input type='password' name='enPass' id='enPass' class='form-control' placeholder='Senha' required='required'></div></div><br><span id='txt_info'></span></div> <input type='button' value='Entrar' onclick='autenticacao()'/> </div></div></div></center></div>";
 }
 function telaPrincipal(){
+	document.getElementById("txTitulo").innerHTML = "Reserva App";
+	document.getElementById("div-solicitacoes").style.display = "none";
 	content.innerHTML = "<span id='container' ></span>";
+	document.getElementById("div-btsMenu").style.display = "block";
 	document.getElementById("div_topo").style.display = "block";
 	
 	//document.getElementById("btMenu").style.display = "block";
 	document.getElementsByTagName("BODY")[0].style.background = "#9dbcd6";
 }
 function telaNovaRequisicao(){
-	document.getElementById("div_topo").style.display = "none";
-	//document.getElementById("btMenu").style.display = "none";
-	content.innerHTML = "<span id='div_req' ><div> <div ><br><input type='text' name='solicitante' id='enUsuario' hidden><input type='password' name='pass' id='enPass' hidden> <label>Centro de custo </label><br><input type='text' name='centroCusto' id='enCC'><br><br><label>Data </label><br><input type='date' name='data' id='enData'><br><br><label>Destino </label><br><input type='text' name='destino' id='enDest'><br><br><label>Justificativa </label><br><textarea name='justificativa' id='enJust'></textarea><hr><label>Horário de saída </label><br><input type='time' name='horSaida' id='enHs'><br><label>Horário de chegada </label><br><input type='time' name='horChegada' id='enHc'><hr><label>Condutor </label><input type='text' name='condutor' id='enCond'><br><br><label>Número de acompanhantes </label><input type='number' value='0' min='0' max='4' name='numAcom' id='enNa'><hr></div><div class='btInferior'><input type='button' id='btReservar' value='Reservar' onclick='solicitar()'/><input type='button' id='btCancelar' value='Cancelar' onclick='telaPrincipal()'/></div></div><br><br><br><br></span>";
+	document.getElementById("txTitulo").innerHTML = "Nova solicitação";
+	document.getElementById("div_topo").style.display = "block";
+	document.getElementById("div-btsMenu").style.display = "none";
+	content.innerHTML = "<span id='container' ><div> <div ><br><input type='text' name='solicitante' id='enUsuario' hidden><input type='password' name='pass' id='enPass' hidden> <label>Centro de custo </label><br><input type='text' name='centroCusto' id='enCC'><br><br><label>Data </label><br><input type='date' name='data' id='enData'><br><br><label>Destino </label><br><input type='text' name='destino' id='enDest'><br><br><label>Justificativa </label><br><textarea name='justificativa' id='enJust'></textarea><hr><label>Horário de saída </label><br><input type='time' name='horSaida' id='enHs'><br><label>Horário de chegada </label><br><input type='time' name='horChegada' id='enHc'><hr><label>Condutor </label><input type='text' name='condutor' id='enCond'><br><br><label>Número de acompanhantes </label><input type='number' value='0' min='0' max='4' name='numAcom' id='enNa'><hr></div><div class='btInferior'><input type='button' id='btReservar' value='Reservar' onclick='solicitar()'/><input type='button' id='btCancelar' value='Cancelar' onclick='telaPrincipal()'/></div></div><br><br><br><br></span>";
+}
+function telaPerfil(){
+	document.getElementById("txTitulo").innerHTML = "Perfil";
+	document.getElementById("div_topo").style.display = "block";
+	document.getElementById("div-btsMenu").style.display = "none";
+	content.innerHTML = "<span id='container' ><div> <div ><br><label>Nome</label><br><input type='text' name='enNome' id='enNo'><br><br><label>Telefone</label><br><input type='tel' name='enFone' id='enFone'><br><br><hr></div><div class='btInferior'><input type='button' id='btReservar' value='Salvar' onclick='solicitar()'/><input type='button' id='btCancelar' value='Voltar' onclick='telaPrincipal()'/></div></div><br><br><br><br></span>";
 }
 
 function historico(dado){
+console.log(dado);
 	if(dado.confirmado){
-		document.getElementById("div-solicitacoes").innerHTML = "<div class='item' style='background:#8fbc8fbd' onclick='alert("+dado.veiculo+dado.placa+")'> <h4 class='header'>Veiculo reservado </h4><h5 class='subheader'>"+dado.data+"</h5></div>";
+		document.getElementById("div-solicitacoes").innerHTML = "<div style='background:#8fbc8fbd' onclick='alert("+dado.veiculo+dado.placa+")'> <h4 class='header'>Veiculo reservado </h4><h5 class='subheader'>"+dado.data+"</h5></div>";
 		
 	}else{
-		document.getElementById("div-solicitacoes").innerHTML = "<div class='item' style='background:#faa'> <h4 class='header'>Veiculo solicitado</h4><h5 class='subheader'>"+dado.data+"</h5></div>";
+		document.getElementById("div-solicitacoes").innerHTML = "<div style='background:#faa'> <h4 class='header'>Veiculo solicitado</h4><br><br><h3 >Data: "+dado.data+"</h3><h3>Status: Solicitado</h3></div>";
 	}
+}
+
+function fimCheck(){
+	telaPrincipal();
+	document.getElementById("btNova").style.display = "block";
+	document.getElementById("btCheck").style.display = "none";
 }

@@ -109,7 +109,8 @@ io.on('connection', function(socket) {
 	tmpData2.push(data);
 	
 	var d = new Date();
-	var ds = d.getHours()+":"+d.getMinutes()+ " " +(d.getDate()+1)+ "/"+(d.getMonth()+1)+"/"+d.getFullYear();
+	var hs = d.getHours()+":"+d.getMinutes();
+	var ds = (d.getDate()+1)+ "/"+(d.getMonth()+1)+"/"+d.getFullYear();
 	data.data = ds;
 	data.confirmado = false;
 	dbs.insert(data, function(err){
@@ -126,22 +127,23 @@ io.on('connection', function(socket) {
 	}else{
 	io.sockets.connected[emails[tmpData2[0].em].socket].emit("result2",tmpData2.shift());
 	}
-	io.sockets.connected[admId].emit("addsolicite",data);
+	if(admId!=null) io.sockets.connected[admId].emit("addsolicite",data);
 	//io.sockets.connected[emails[data.em].socket].emit("result2", data);
 	
-	console.log(emails);
+	//console.log(emails);
   });
   socket.on('confirm', function(data) {
 	//email(data.em,data.ps,1);
-	console.log(data);
-	
+	//console.log(data);
+	data.confirmado = true;
 	if(emails[data.em] !== undefined){
-	console.log(emails[data.em]);
+	//console.log(emails[data.em]);
 	io.sockets.connected[emails[data.em].socket].emit("confirmed",data);
 	}else{
 	console.log("erro de ID");
 	}
-	dbs.update({ em: data.em }, {confirmado: true}, {}, function (err) {
+	dbs.update({ em: data.em }, data, {}, function (err) {
+	//dbs.update({ em: data.em }, {$set {idade: 19}}, {}, function (err) {
 	if(err)return console.log(err);
 	console.log(data);
 	});
